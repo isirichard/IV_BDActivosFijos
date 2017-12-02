@@ -30,7 +30,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import conectaBD.LZ3001_Proveedor;
 
 public class TablaProveedor extends JFrame{
 	String evento="";
@@ -609,7 +608,4 @@ public class TablaProveedor extends JFrame{
 		// TODO add your handling code here:
 	}//GEN-LAST:event_btnSalirActionPerformed
 
-	public static void main(String[] args) {
-		new LZ3001_Proveedor();
-	}
 }
