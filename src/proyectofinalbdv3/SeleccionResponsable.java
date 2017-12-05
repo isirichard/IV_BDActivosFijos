@@ -7,6 +7,11 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -48,14 +53,37 @@ public class SeleccionResponsable extends JFrame{
         panSiguiente=new JPanel(new FlowLayout(FlowLayout.RIGHT));
         lblResponsable=new JLabel("Seleccione Responsable:");
         comResponsable=new JComboBox<>();
-        final String []tabla={"Juan","Pedro","Luis"};
-        comResponsable.setModel(new DefaultComboBoxModel<>(tabla));
+        try {
+			//1. Crear CONEXIÓN
+			Connection miConextion=DriverManager.getConnection("jdbc:mysql://localhost:3306/activos_fijos?verifyServerCertificate=false&useSSL=true", "root", "");
+			//2. CREAR OBJETO STATEMENT
+			Statement miStatement=miConextion.createStatement();
+			//3. EJECUTAR SQL
+			//Responsable y ciudad
+			ResultSet miResulset=miStatement.executeQuery("SELECT * FROM RESPONSABLE");
+			//4. RECORRER EL RESULSET
+			comResponsable.removeAllItems();
+			while(miResulset.next()){
+				comResponsable.addItem(miResulset.getString("RESNOM"));
+			}
+			//System.out.println(comCarNom.getItemAt(1));
+			//System.out.println("CONECTADO A BD PROVEE!!");
+		} catch (Exception e) {
+			System.out.println("NO CONECTADO A BD RESPONSABLE!!");
+			e.printStackTrace();
+		}
+        //final String []tabla={"Juan","Pedro","Luis"};
+        //comResponsable.setModel(new DefaultComboBoxModel<>(tabla));
         btnSiguiente=new JButton("Siguiente");
         btnSiguiente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String temp=comResponsable.getSelectedItem().toString();
+<<<<<<< HEAD
                 //if(temp.equals(tabla[0])){
+=======
+               // if(temp.equals(tabla[0])){
+>>>>>>> c0234d2ea93b0d4c31146d50196fbeb18ca4b3fa
                     StringBuffer sb=new StringBuffer();
                     sb.append(comResponsable.getSelectedItem());
                     new InformeActivoResponsable(sb.toString());

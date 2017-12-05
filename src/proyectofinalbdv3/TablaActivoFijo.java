@@ -357,7 +357,149 @@ public class TablaActivoFijo extends JFrame{
 			System.out.println("NO CONECTADO A BD!!");
 			e.printStackTrace();
 		}
-        
+////////////////////////////////////////////////////////////////////////PRUEBAS DE VISTA /////////////////////////////////////////////////////////
+/*
+try {
+//1. Crear CONEXIÓN
+Connection miConextion=DriverManager.getConnection("jdbc:mysql://localhost:3306/activos_fijos?verifyServerCertificate=false&useSSL=true", "root", "");
+//2. CREAR OBJETO STATEMENT
+Statement miStatement=miConextion.createStatement();
+//3. EJECUTAR SQL
+//Responsable y ciudad
+String uno = "CREATE VIEW MOV_AQP_MES3 ";
+String dos="AS SELECT  TIPTRANOM, CIUNOM, ACTFECAÑO, ACTFECMES, ACTFECDIA ";
+String tres="FROM ACTIVOS_FIJOS_CAB, ACTIVOS_FIJOS_DET, RESPONSABLE, CIUDAD, TIPO_TRASPASO ";
+String cuatro="WHERE  ACTIVOS_FIJOS_CAB.ACTCOD=ACTIVOS_FIJOS_DET.ACTCOD AND TIPO_TRASPASO.TIPTRACOD=ACTIVOS_FIJOS_DET.TIPTRACOD AND ACTIVOS_FIJOS_DET.RESDNI=RESPONSABLE.RESDNI AND RESPONSABLE.CIUCOD= CIUDAD.CIUCOD ";
+String cinco="AND CIUNOM='Lima'";
+String sql=uno+dos+tres+cuatro+cinco;
+miStatement.executeUpdate(sql);
+//4. RECORRER EL RESULSET
+//System.out.println(sql);
+//comProNom.removeAllItems();
+//while(miResulset.next()){
+//	System.out.println(miResulset.getString("CIUNOM"));
+//}
+
+//System.out.println(comCarNom.getItemAt(1));
+//System.out.println("CONECTADO A BD PROVEE!!");
+//miResulset.close();
+miStatement.close();
+miConextion.close();
+} catch (Exception e) {
+System.out.println("NO CONECTADO A BD VISTA!!");
+e.printStackTrace();
+}
+*/
+
+try {
+//1. Crear CONEXIÓN
+Connection miConextion=DriverManager.getConnection("jdbc:mysql://localhost:3306/activos_fijos?verifyServerCertificate=false&useSSL=true", "root", "");
+//2. CREAR OBJETO STATEMENT
+//Statement miStatement=miConextion.createStatement();
+
+//Responsable y ciudad
+//String uno = "CREATE VIEW MOV_AQP_MES3 ";
+String dos="SELECT  TIPTRANOM, CIUNOM, ACTFECAÑO, ACTFECMES, ACTFECDIA ";
+String tres="FROM ACTIVOS_FIJOS_CAB, ACTIVOS_FIJOS_DET, RESPONSABLE, CIUDAD, TIPO_TRASPASO ";
+String cuatro="WHERE  ACTIVOS_FIJOS_CAB.ACTCOD=ACTIVOS_FIJOS_DET.ACTCOD AND TIPO_TRASPASO.TIPTRACOD=ACTIVOS_FIJOS_DET.TIPTRACOD AND ACTIVOS_FIJOS_DET.RESDNI=RESPONSABLE.RESDNI AND RESPONSABLE.CIUCOD= CIUDAD.CIUCOD ";
+String cinco="AND CIUNOM='Lima' AND ACTFECMES=?";
+String sql=dos+tres+cuatro+cinco;
+//ResultSet miResulset=miStatement.executeQuery("SELECT  TIPTRANOM, CIUNOM, ACTFECAÑO, ACTFECMES, ACTFECDIA FROM ACTIVOS_FIJOS_CAB, ACTIVOS_FIJOS_DET, RESPONSABLE, CIUDAD, TIPO_TRASPASO WHERE  ACTIVOS_FIJOS_CAB.ACTCOD=ACTIVOS_FIJOS_DET.ACTCOD AND TIPO_TRASPASO.TIPTRACOD=ACTIVOS_FIJOS_DET.TIPTRACOD AND ACTIVOS_FIJOS_DET.RESDNI=RESPONSABLE.RESDNI AND RESPONSABLE.CIUCOD= CIUDAD.CIUCOD");
+PreparedStatement miSentencia=miConextion.prepareStatement(sql);
+//ResultSet miResulset=miStatement.executeQuery(sql);
+miSentencia.setInt(1,5);
+//3. EJECUTAR SQL
+ResultSet miResulset=miSentencia.executeQuery();
+//4. RECORRER EL RESULSET
+//comProNom.removeAllItems();
+while(miResulset.next()){
+System.out.println(miResulset.getString("TIPTRANOM")+" "+miResulset.getString("CIUNOM")+" "+miResulset.getString("ACTFECAÑO")+" "+miResulset.getString("ACTFECMES")+" "+miResulset.getString("ACTFECDIA"));
+}
+miResulset.close();
+//miStatement.close();
+miConextion.close();
+
+//System.out.println(comCarNom.getItemAt(1));
+//System.out.println("CONECTADO A BD PROVEE!!");
+} catch (Exception e) {
+System.out.println("NO CONECTADO A BD VISTA 1!!");
+e.printStackTrace();
+}
+
+
+
+try {
+//1. Crear CONEXIÓN
+Connection miConextion=DriverManager.getConnection("jdbc:mysql://localhost:3306/activos_fijos?verifyServerCertificate=false&useSSL=true", "root", "");
+//2. CREAR OBJETO STATEMENT
+//Statement miStatement=miConextion.createStatement();
+
+//Responsable y ciudad
+//String uno = "CREATE VIEW MOV_AQP_MES3 ";
+String dos="SELECT ACTNOM, RESNOM ";
+String tres="FROM ACTIVOS_FIJOS_CAB, ACTIVOS_FIJOS_DET, RESPONSABLE ";
+String cuatro="WHERE  ACTIVOS_FIJOS_CAB.ACTCOD=ACTIVOS_FIJOS_DET.ACTCOD AND ACTIVOS_FIJOS_DET.RESDNI=RESPONSABLE.RESDNI ";
+String cinco="AND RESNOM=?";
+String sql=dos+tres+cuatro+cinco;
+//ResultSet miResulset=miStatement.executeQuery("SELECT  TIPTRANOM, CIUNOM, ACTFECAÑO, ACTFECMES, ACTFECDIA FROM ACTIVOS_FIJOS_CAB, ACTIVOS_FIJOS_DET, RESPONSABLE, CIUDAD, TIPO_TRASPASO WHERE  ACTIVOS_FIJOS_CAB.ACTCOD=ACTIVOS_FIJOS_DET.ACTCOD AND TIPO_TRASPASO.TIPTRACOD=ACTIVOS_FIJOS_DET.TIPTRACOD AND ACTIVOS_FIJOS_DET.RESDNI=RESPONSABLE.RESDNI AND RESPONSABLE.CIUCOD= CIUDAD.CIUCOD");
+PreparedStatement miSentencia=miConextion.prepareStatement(sql);
+//ResultSet miResulset=miStatement.executeQuery(sql);
+miSentencia.setString(1,"Richard Alvarez Mamani");
+//3. EJECUTAR SQL
+ResultSet miResulset=miSentencia.executeQuery();
+//4. RECORRER EL RESULSET
+//comProNom.removeAllItems();
+while(miResulset.next()){
+System.out.println(miResulset.getString("ACTNOM")+" "+miResulset.getString("RESNOM"));
+}
+miResulset.close();
+miSentencia.close();
+miConextion.close();
+
+//System.out.println(comCarNom.getItemAt(1));
+//System.out.println("CONECTADO A BD PROVEE!!");
+} catch (Exception e) {
+System.out.println("NO CONECTADO A VISTA 2!!");
+e.printStackTrace();
+}
+
+try {
+//1. Crear CONEXIÓN
+Connection miConextion=DriverManager.getConnection("jdbc:mysql://localhost:3306/activos_fijos?verifyServerCertificate=false&useSSL=true", "root", "");
+//2. CREAR OBJETO STATEMENT
+//Statement miStatement=miConextion.createStatement();
+
+//Responsable y ciudad
+//String uno = "CREATE VIEW MOV_AQP_MES3 ";
+String dos="SELECT ACTNOM, PRONOM ";
+String tres="FROM ACTIVOS_FIJOS_CAB, PROVEEDOR ";
+String cuatro="WHERE  ACTIVOS_FIJOS_CAB.PROCOD=PROVEEDOR.PROCOD ";
+String cinco="AND PRONOM=?";
+String sql=dos+tres+cuatro+cinco;
+//ResultSet miResulset=miStatement.executeQuery("SELECT  TIPTRANOM, CIUNOM, ACTFECAÑO, ACTFECMES, ACTFECDIA FROM ACTIVOS_FIJOS_CAB, ACTIVOS_FIJOS_DET, RESPONSABLE, CIUDAD, TIPO_TRASPASO WHERE  ACTIVOS_FIJOS_CAB.ACTCOD=ACTIVOS_FIJOS_DET.ACTCOD AND TIPO_TRASPASO.TIPTRACOD=ACTIVOS_FIJOS_DET.TIPTRACOD AND ACTIVOS_FIJOS_DET.RESDNI=RESPONSABLE.RESDNI AND RESPONSABLE.CIUCOD= CIUDAD.CIUCOD");
+PreparedStatement miSentencia=miConextion.prepareStatement(sql);
+//ResultSet miResulset=miStatement.executeQuery(sql);
+miSentencia.setString(1,"Miguel");
+//3. EJECUTAR SQL
+ResultSet miResulset=miSentencia.executeQuery();
+//4. RECORRER EL RESULSET
+//comProNom.removeAllItems();
+while(miResulset.next()){
+System.out.println(miResulset.getString("ACTNOM")+" "+miResulset.getString("PRONOM"));
+}
+miResulset.close();
+miSentencia.close();
+miConextion.close();
+
+//System.out.println(comCarNom.getItemAt(1));
+//System.out.println("CONECTADO A BD PROVEE!!");
+} catch (Exception e) {
+System.out.println("NO CONECTADO A VISTA 3!!");
+e.printStackTrace();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+		
         btnAdicionar=new JButton("Adicionar");
         /*
         btnAdicionar.addActionListener(new ActionListener() {
