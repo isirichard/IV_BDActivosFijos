@@ -63,7 +63,7 @@ public class Informes extends JFrame{
                     new SeleccionProveedor();
                     dispose();
                 }else if(temp.equals("Informe Movimiento - Mes")){
-                    new SeleccionResponsable();
+                    new SeleccionMes();
                     dispose();
                 }
             }
