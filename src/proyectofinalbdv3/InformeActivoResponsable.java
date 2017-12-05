@@ -70,10 +70,10 @@ public class InformeActivoResponsable extends JFrame{
         	//4. RECORRER EL RESULSET
         	tabActRes.removeAll();
         	DefaultTableModel model=new DefaultTableModel(new String [] {
-            		"ActCod","Nombre Activo","Día","Mes","Año","Responsable"
+        			"Responsable","ActCod","Nombre Activo","Día","Mes","Año"
     		},0);
         	while(miResulset.next()){
-            	model.addRow(new Object[]{miResulset.getString("ACTCOD"),miResulset.getString("ACTNOM"),miResulset.getString("ACTFECAÑO"),miResulset.getString("ACTFECMES"),miResulset.getString("ACTFECDIA"),miResulset.getString("RESNOM")});
+            	model.addRow(new Object[]{miResulset.getString("RESNOM"),miResulset.getString("ACTCOD"),miResulset.getString("ACTNOM"),miResulset.getString("ACTFECAÑO"),miResulset.getString("ACTFECMES"),miResulset.getString("ACTFECDIA")});
 			}
         	tabActRes.setModel(model);
         	//System.out.println(miResulset.getString("CIUNOM"));

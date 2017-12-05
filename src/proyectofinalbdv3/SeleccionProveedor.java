@@ -7,6 +7,11 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -48,8 +53,27 @@ public class SeleccionProveedor extends JFrame{
         panSiguiente=new JPanel(new FlowLayout(FlowLayout.RIGHT));
         lblResponsable=new JLabel("Seleccione Proveedor:");
         comResponsable=new JComboBox<>();
-        final String []tabla={"Ferreteria San Diego","Farmacia San Luis","Constructora Hnos. Alvarez"};
-        comResponsable.setModel(new DefaultComboBoxModel<>(tabla));
+        try {
+			//1. Crear CONEXIÓN
+			Connection miConextion=DriverManager.getConnection("jdbc:mysql://localhost:3306/activos_fijos?verifyServerCertificate=false&useSSL=true", "root", "");
+			//2. CREAR OBJETO STATEMENT
+			Statement miStatement=miConextion.createStatement();
+			//3. EJECUTAR SQL
+			//Responsable y ciudad
+			ResultSet miResulset=miStatement.executeQuery("SELECT * FROM PROVEEDOR");
+			//4. RECORRER EL RESULSET
+			comResponsable.removeAllItems();
+			while(miResulset.next()){
+				comResponsable.addItem(miResulset.getString("PRONOM"));
+			}
+			//System.out.println(comCarNom.getItemAt(1));
+			//System.out.println("CONECTADO A BD PROVEE!!");
+		} catch (Exception e) {
+			System.out.println("NO CONECTADO A BD PROVEEDOR!!");
+			e.printStackTrace();
+		}
+        //final String []tabla={"Ferreteria San Diego","Farmacia San Luis","Constructora Hnos. Alvarez"};
+        //comResponsable.setModel(new DefaultComboBoxModel<>(tabla));
         btnSiguiente=new JButton("Siguiente");
         btnSiguiente.addActionListener(new ActionListener() {
             @Override

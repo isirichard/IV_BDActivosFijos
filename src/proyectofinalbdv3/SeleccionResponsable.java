@@ -79,11 +79,7 @@ public class SeleccionResponsable extends JFrame{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String temp=comResponsable.getSelectedItem().toString();
-<<<<<<< HEAD
-                //if(temp.equals(tabla[0])){
-=======
-               // if(temp.equals(tabla[0])){
->>>>>>> c0234d2ea93b0d4c31146d50196fbeb18ca4b3fa
+
                     StringBuffer sb=new StringBuffer();
                     sb.append(comResponsable.getSelectedItem());
                     new InformeActivoResponsable(sb.toString());
