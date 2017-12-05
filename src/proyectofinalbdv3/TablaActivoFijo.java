@@ -178,7 +178,7 @@ public class TablaActivoFijo extends JFrame{
         
     	ventanas=new JComboBox<>();
         final String []tabla={"Tabla Activos Fijos","Tabla Cargos","Tabla Ciudades","Tabla Oficina",
-                "Tabla Proveedores","Tabla Responsables","Tabla Tipos de Traspaso","Tabla Unidad"};
+                "Tabla Proveedores","Tabla Responsables","Tabla Tipos de Traspaso","Tabla Unidad","Informes"};
         ventanas.setModel(new DefaultComboBoxModel<>(tabla));
         ventanas.addActionListener(new ActionListener() {
             @Override
@@ -208,6 +208,9 @@ public class TablaActivoFijo extends JFrame{
                     dispose();
                 }else if(getItem.equals(tabla[7])){
                     new TablaUnidad();
+                    dispose();
+                }else if(getItem.equals(tabla[8])){
+                    new Informes();
                     dispose();
                 }
             }
