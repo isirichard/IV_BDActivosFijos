@@ -59,6 +59,12 @@ public class Informes extends JFrame{
                 if(temp.equals("Informe Activo Fijo - Responsable")){
                     new SeleccionResponsable();
                     dispose();
+                }else if(temp.equals("Informe Activo Fijo - Proveedor")){
+                    new SeleccionProveedor();
+                    dispose();
+                }else if(temp.equals("Informe Movimiento - Mes")){
+                    new SeleccionResponsable();
+                    dispose();
                 }
             }
         });

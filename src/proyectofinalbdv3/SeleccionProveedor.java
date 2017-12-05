@@ -15,7 +15,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class SeleccionResponsable extends JFrame{
+public class SeleccionProveedor extends JFrame{
     JLabel lblResponsable;
     JComboBox<String> comResponsable;
     JButton btnSiguiente;
@@ -23,9 +23,9 @@ public class SeleccionResponsable extends JFrame{
     JPanel panResponsables;
     JPanel panSiguiente;
 
-    public SeleccionResponsable() {
+    public SeleccionProveedor() {
         initComponents();
-        setTitle("Seleccion de Responsable de Activos");
+        setTitle("Seleccion de Proveedor de Activos");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(400, 200);
         Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,9 +46,9 @@ public class SeleccionResponsable extends JFrame{
         panSeleccion=new JPanel(new FlowLayout(FlowLayout.LEFT));
         panResponsables=new JPanel(new FlowLayout(FlowLayout.CENTER));
         panSiguiente=new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        lblResponsable=new JLabel("Seleccione Responsable:");
+        lblResponsable=new JLabel("Seleccione Proveedor:");
         comResponsable=new JComboBox<>();
-        final String []tabla={"Juan","Pedro","Luis"};
+        final String []tabla={"Ferreteria San Diego","Farmacia San Luis","Constructora Hnos. Alvarez"};
         comResponsable.setModel(new DefaultComboBoxModel<>(tabla));
         btnSiguiente=new JButton("Siguiente");
         btnSiguiente.addActionListener(new ActionListener() {
@@ -58,7 +58,7 @@ public class SeleccionResponsable extends JFrame{
                 //if(temp.equals(tabla[0])){
                     StringBuffer sb=new StringBuffer();
                     sb.append(comResponsable.getSelectedItem());
-                    new InformeActivoResponsable(sb.toString());
+                    new InformeActivoProveedor(sb.toString());
                     dispose();
                 //}
                 

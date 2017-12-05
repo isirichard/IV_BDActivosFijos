@@ -11,14 +11,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class InformeActivoResponsable extends JFrame{
+public class InformeActivoProveedor extends JFrame{
     JScrollPane scrTabActRes;
     DefaultTableModel dtm;
     JTable tabActRes;
 
-    public InformeActivoResponsable(String string){
+    public InformeActivoProveedor(String string){
         initComponents();
-        setTitle("Informe Activo Fijo - Responsable:"+string);
+        setTitle("Informe Activo Fijo - Proveedor:"+string);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700, 700);
         Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
